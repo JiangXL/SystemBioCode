@@ -1,0 +1,11 @@
+tic
+a0=0:5e-5:2e-1;
+b0=(0:2.5e-4:1)';
+na=length(a0);nb=length(b0);
+a=repmat(a0,nb,1);
+b=repmat(b0,1,na);
+tao=-(b.^4+(2*a-1).*b.^2+a+a.^2)./(a+b.^2);
+st=uint8(logical(tao>0))*255;
+toc
+subplot(1,2,1);imshow(st);
+subplot(1,2,2);imshow(tao);
