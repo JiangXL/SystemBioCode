@@ -17,50 +17,72 @@ S0=0.001;           % units M
 options=[];
 
 % ode 45 slover
-[t,y]=ode45('enzymefunction',[0 100],[S0 0 0],options,k1,k_1,k2,E0);
+x=0:1:100;
+[t,y]=ode45('enzymefunction',[0 1000],[S0 0 0],options,k1,k_1,k2,E0);
 S=y(:,1);
 ES=y(:,2);
 E=E0-ES;
 P=y(:,3);
 
 figure(1); 
-subplot(1,2,1),
-plot((t),S,'.-r',(t),E,'.-b',(t),ES,'.-g',(t),P,'.-c');
-legend('S','E','ES','P','Best');
-xlabel('Time (s)');ylabel('Concentration (M)');title('ode45');
+%subplot(2,2,1),
+%plot((t),S,'.-r',(t),E,'.-b',(t),ES,'.-g',(t),P,'.-c');
+%legend('S','E','ES','P');
+%xlabel('Time (s)');ylabel('Concentration (M)');title('ode45');
+subplot(2,2,1),
+%plot(log10(t), S,'.-r',log10(t),E,'.-b',log10(t),ES,'.-g',log10(t),P,'.-c');
+semilogx(t,S,'.-r',t,E,'.-b', t,ES,'.-g', t,P,'.-c');
+xlim([0.1,1000]);
+legend('S','E','ES','P');
+xlabel('Time(s)');ylabel('Concentration (M)');title('ode45');
 
-plot(log10(t),S,'.-r',log10(t),E,'.-b',log10(t),ES,'.-g',log10(t),P,'.-c');legend('S','E','ES','P','Best');
-xlabel('log(Time (s))');ylabel('Concentration (M)');title('ode45');
+% solve enzyme reaction with own odesolver
+[t,y]=myodesolver(@(t,y)enzymefunction(t,y,flag,k1,k_1,k2,E0),10,[0,1000],[ S0 0 0]);
+S1=y(:,1);
+ES1=y(:,2);
+E1=E0-ES1;
+P1=y(:,3);
 
-figure(3)
-vmax=k2*E0;
-Km=(k_1+k2)/k1;
-v_real=k2*ES;
-v_predicted=(vmax*S)./(Km+S);
-subplot(1,2,1),plot(t,v_real,'.-r',t,v_predicted,'.-b');
-legend('Calculatd turnover rate v','Predicted turnover rate v0','Best');
-xlabel('Time (s)');
-ylabel('Turn-over rate (M/s)');
-title('Deviation of psuedo-steady state approximation - ode45','Fontsize',10);
-% plot(log10(t),v_real,'.-r',log10(t),v_predicted,'.-b');
-% legend('Calculatd turnover rate v','Predicted turnover rate v0',0);
-% xlabel('log(Time) (s)');
-% ylabel('Turn-over rate (M/s)');
+% figure(2); 
+%subplot(2,2,3),
+%plot((t),S1,'.-r',(t),E1,'.-b',(t),ES1,'.-g',(t),P1,'.-c');
+%legend('S','E','ES','P');
+%xlabel('Time (s)');ylabel('Concentration (M)');title('1stEluerSolver 10step');
+
+subplot(2,2,2),
+%plot(log10(t),S1,'.-r',log10(t),E1,'.-b',log10(t),ES1,'.-g',log10(t),P1,'.-c');
+semilogx(t,S1,'.-r',t,E1,'.-b', t,ES1,'.-g', t,P1,'.-c');
+xlim([0.1,1000]);
+legend('S','E','ES','P');
+xlabel('Time (s)');ylabel('Concentration (M)');title('1st EluerSolver 10 Step');
+
+[t,y]=myodesolver(@(t,y)enzymefunction(t,y,flag,k1,k_1,k2,E0),100,[0,1000],[ S0 0 0]);
+S1=y(:,1);
+ES1=y(:,2);
+E1=E0-ES1;
+P1=y(:,3);
+subplot(2,2,3),
+%plot(log10(t),S1,'.-r',log10(t),E1,'.-b',log10(t),ES1,'.-g',log10(t),P1,'.-c');
+semilogx(t,S1,'.-r',t,E1,'.-b', t,ES1,'.-g', t,P1,'.-c');
+xlim([0.1,1000]);
+legend('S','E','ES','P');
+xlabel('Time (s)');ylabel('Concentration (M)');title('1st EluerSolver 100 Step');
+
+[t,y]=myodesolver(@(t,y)enzymefunction(t,y,flag,k1,k_1,k2,E0),1000,[0,1000],[ S0 0 0]);
+S1=y(:,1);
+ES1=y(:,2);
+E1=E0-ES1;
+P1=y(:,3);
+subplot(2,2,4),
+%plot(log10(t),S1,'.-r',log10(t),E1,'.-b',log10(t),ES1,'.-g',log10(t),P1,'.-c');
+%plot(t,S1,'.-r',t,E1,'.-b',t,ES1,'.-g',t,P1,'.-c');
+semilogx(t,S1,'.-r',t,E1,'.-b', t,ES1,'.-g', t,P1,'.-c');
+xlim([0.1,1000]);
+legend('S','E','ES','P');
+xlabel('Time(s)');ylabel('Concentration (M)');title('1st EluerSolver 1000 Step');
 
 
+%-------------------------------------------
+% How to code a log x axis but natural number
+%--------------------------------------------
 
-
-figure(2);
-subplot(1,2,2),plot(log10(t),S,'.-r',log10(t),E,'.-b',log10(t),ES,'.-g',log10(t),P,'.-c');legend('S','E','ES','P','Best');
-xlabel('log(Time (s))');ylabel('Concentration (M)');title('myode -group 5');
-
-figure(3)
-vmax=k2*E0;
-Km=(k_1+k2)/k1;
-v_real=k2*ES;
-v_predicted=(vmax*S)./(Km+S);
-subplot(1,2,2),plot(t,v_real,'.-r',t,v_predicted,'.-b');
-legend('Calculatd turnover rate v','Predicted turnover rate v0','Best');
-xlabel('Time (s)');
-ylabel('Turn-over rate (M/s)');
-title('Deviation of psuedo-steady state approximation -myode -group 5','Fontsize',10)
