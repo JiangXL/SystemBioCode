@@ -18,7 +18,7 @@ options=[];
 
 % ode 45 slover
 x=0:1:100;
-[t,y]=ode45('enzymefunction',[0 1000],[S0 0 0],options,k1,k_1,k2,E0);
+[t,y]=ode45('enzymefunction',[0 100],[S0 0 0],options,k1,k_1,k2,E0);
 S=y(:,1);
 ES=y(:,2);
 E=E0-ES;
@@ -32,12 +32,12 @@ figure(1);
 subplot(2,2,1),
 %plot(log10(t), S,'.-r',log10(t),E,'.-b',log10(t),ES,'.-g',log10(t),P,'.-c');
 semilogx(t,S,'.-r',t,E,'.-b', t,ES,'.-g', t,P,'.-c');
-xlim([0.1,1000]);
+xlim([0.1,100]);
 legend('S','E','ES','P');
 xlabel('Time(s)');ylabel('Concentration (M)');title('ode45');
 
 % solve enzyme reaction with own odesolver
-[t,y]=myodesolver(@(t,y)enzymefunction(t,y,flag,k1,k_1,k2,E0),10,[0,1000],[ S0 0 0]);
+[t,y]=myodesolver(@(t,y)enzymefunction(t,y,flag,k1,k_1,k2,E0),10,[0,100],[ S0 0 0]);
 S1=y(:,1);
 ES1=y(:,2);
 E1=E0-ES1;
@@ -52,11 +52,11 @@ P1=y(:,3);
 subplot(2,2,2),
 %plot(log10(t),S1,'.-r',log10(t),E1,'.-b',log10(t),ES1,'.-g',log10(t),P1,'.-c');
 semilogx(t,S1,'.-r',t,E1,'.-b', t,ES1,'.-g', t,P1,'.-c');
-xlim([0.1,1000]);
+xlim([0.1,100]);
 legend('S','E','ES','P');
-xlabel('Time (s)');ylabel('Concentration (M)');title('1st EluerSolver 10 Step');
+xlabel('Time (s)');ylabel('Concentration (M)');title('2nd EluerSolver 10 Step');
 
-[t,y]=myodesolver(@(t,y)enzymefunction(t,y,flag,k1,k_1,k2,E0),100,[0,1000],[ S0 0 0]);
+[t,y]=myodesolver(@(t,y)enzymefunction(t,y,flag,k1,k_1,k2,E0),100,[0,100],[ S0 0 0]);
 S1=y(:,1);
 ES1=y(:,2);
 E1=E0-ES1;
@@ -64,11 +64,11 @@ P1=y(:,3);
 subplot(2,2,3),
 %plot(log10(t),S1,'.-r',log10(t),E1,'.-b',log10(t),ES1,'.-g',log10(t),P1,'.-c');
 semilogx(t,S1,'.-r',t,E1,'.-b', t,ES1,'.-g', t,P1,'.-c');
-xlim([0.1,1000]);
+xlim([0.1,100]);
 legend('S','E','ES','P');
-xlabel('Time (s)');ylabel('Concentration (M)');title('1st EluerSolver 100 Step');
+xlabel('Time (s)');ylabel('Concentration (M)');title('2nd EluerSolver 100 Step');
 
-[t,y]=myodesolver(@(t,y)enzymefunction(t,y,flag,k1,k_1,k2,E0),1000,[0,1000],[ S0 0 0]);
+[t,y]=myodesolver(@(t,y)enzymefunction(t,y,flag,k1,k_1,k2,E0),1000,[0,100],[ S0 0 0]);
 S1=y(:,1);
 ES1=y(:,2);
 E1=E0-ES1;
@@ -77,9 +77,9 @@ subplot(2,2,4),
 %plot(log10(t),S1,'.-r',log10(t),E1,'.-b',log10(t),ES1,'.-g',log10(t),P1,'.-c');
 %plot(t,S1,'.-r',t,E1,'.-b',t,ES1,'.-g',t,P1,'.-c');
 semilogx(t,S1,'.-r',t,E1,'.-b', t,ES1,'.-g', t,P1,'.-c');
-xlim([0.1,1000]);
+xlim([0.1,100]);
 legend('S','E','ES','P');
-xlabel('Time(s)');ylabel('Concentration (M)');title('1st EluerSolver 1000 Step');
+xlabel('Time(s)');ylabel('Concentration (M)');title('1nd EluerSolver 1000 Step');
 
 
 %-------------------------------------------
