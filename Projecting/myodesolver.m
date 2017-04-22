@@ -3,7 +3,7 @@ function [t,y]=myodesolver(f,step,time,y0)
 %f=function,step为步数，t0,y0为时间和反应物浓度初始值
 %  | Version  | Contribution | Time | Comment|
 %  |   1.0     | 嫌疑犯是光头 | 2017.4.17| Initial verison from Group5
-%  |   1.1     | H.F.        | 2017.4.18| 更新至二阶精度欧拉算法
+%  |   1.1     | H.F.        | 2017.4.20 | update to 2nd oder Eular Solver
 %--------------------------------------------------------------------------
 times=time(2)-time(1); % times of calculation
 t=zeros(step+1,1); % 记录时间t的值的列向量
