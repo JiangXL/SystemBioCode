@@ -1,4 +1,5 @@
-欧阳颀课题组与合作者发现时空变化环境下的细菌趋化行为
+![欧阳颀课题组与合作者发现时空变化环境下的细菌趋化行为](http://pkunews.pku.edu.cn/xxfz/2012-07/26/content_248491.htm)
+
 日期： 2012-07-26  信息来源： 北大定量生物学中心
 
 北京大学物理学院欧阳颀教授课题组与美国IBM T.J.沃森研究所涂豫海教授合作，在最近的研究中发现了细菌在时空变化环境下趋化行为的新现象，并提出了基于个体分子机制的描述群体行为的平均场模型。研究成果连续发表在最近两期的《物理评论快报》上(Frequency-Dependent Escherichia coli Chemotaxis Behavior. Xuejun Zhu, Guangwei Si, Nianpei Deng, Qi Ouyang, Tailin Wu, Zhuoran He, Lili Jiang, Chunxiong Luo and Yuhai Tu, Phys. Rev. Lett. 108, 128101 (2012). 与Pathway-based mean-field model for Escherichia coli chemotaxis. Guangwei Si, Tailin Wu, Qi Ouyang and Yuhai Tu. Phys. Rev. Lett. 109, 048101 (2012))。
