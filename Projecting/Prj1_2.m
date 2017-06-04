@@ -17,6 +17,7 @@ n=3.5;
 B=2.1;
 
 tetR2=k1*(TtetR*TtetR)./(k2*Dox) - (exp(-t*k2))./(k2*Dox);
+
 pCMV2=(theta.^n)./(theta.^n+tetR2.^n);
 GFP=(B*pCMV2+0.028)*t;%leakage
 loglog(Dox,GFP,'or');
@@ -25,3 +26,10 @@ ylabel('Mean of GFP');
 title('Dose responese without feedback');
     grid on;
 ylim([1e1,1e4]);
+hold on;  
+
+figure(2);
+time=[0:1:100];
+tetR2_1=k1*(c.*time)./(k2*1)-(exp(-time*k2)./(k2*1));
+plot(time,tetR2_1);
+hold on;

@@ -3,13 +3,13 @@
 % ode solver
 %  | Version  | Contribution | Time | Comment|
 %  |   1.0     | œ”“…∑∏ «π‚Õ∑ | 2017.4.17| Initial verison from Group5
-%  |   1.1     | H.F.        | 2017.4.18| 
+%  |   1.1     | H.F.        | 2017.4.20| Update the ode solver
 % Team Nubmer£∫Ha YunYang, Mo Yuejian£¨Jia YuHang, Wang XingYu
 %--------------------------------------------------------------------------
 clc;
 clear;
 % Initial reaction paration
-k1=1e3; 			% units 1/(Ms) 
+k1=1e3; 			% units 1/(Ms)    
 k_1=0.1e-0;        	% units 1/s k_1=k-1
 k2=0.05; 		    % units 1/s
 E0=0.5e-3;          % units M
