@@ -1,8 +1,11 @@
+%------------------Prj2_3.m--------------------
+% Single E.Coli random walk
+% 20170609,H.F.
+%-------------------------------------------
 clear all;
 load channel_1.mat 
-% Single E.Coli ramdom walk
-X=tracks(17).tracksCoordAmpCG(1,1:8:end);
-Y=tracks(17).tracksCoordAmpCG(1,2:8:end);
+X=tracks(33).tracksCoordAmpCG(1,1:8:end);
+Y=tracks(33).tracksCoordAmpCG(1,2:8:end);
 X(isnan(X))=[];
 ylabel('Counter');
 Y(isnan(Y))=[];% delete NaN
@@ -18,30 +21,34 @@ trackX1=trackX0(2:end-1);
 
 figure(3);
 subplot(2,2,1);
-hist(trackX1/0.1,80);
+hist(abs(trackX1/0.1),80);
 title('Single E.Coli random walk on X-axis');
 ylabel('Counter');
 xlabel('Move Speed/(\mum/s)');
 
 %
 subplot(2,2,2);
-hist(trackY1/0.1,80);
+hist(abs(trackY1/0.1),80);
 title('Single E.Coli random walk on Y-axis');
 ylabel('Counter');
 xlabel('Move Speed/(\mum/s)');
 
 %Track of *E.Coli*
 subplot(2,2,3);
-plot(X,Y);
+comet(X,Y); % dymacis show the track of bacteria
 xlabel('X-axis/ \mum');
 ylabel('Y-axis/ \mum');
 title('Track of single bacteria');
 
 % speed(t)
 subplot(2,2,4);
-time=0.1:0.1:0.1*size(trackY1,2);
-v=sqrt((trackY1/0.1).^2+(trackX1/0.2).^1);
-plot(time,v);
+time=0.1:0.1:0.1*size(trackX1,2);
+v=sqrt((trackY1/0.1).^2+(trackX1/0.1).^2);
+expectspeed=mean(v);
+plot(time,expectspeed*ones(length(time)));
+hold on;
+comet(time,v);
+legend('Average Speed','On Time speed');
 xlabel('Time/s');
 ylabel('Speed \mum/s');
 title('Speed during time');
