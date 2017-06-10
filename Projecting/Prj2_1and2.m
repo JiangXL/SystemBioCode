@@ -2,83 +2,75 @@
 % Simulation of brownian motion and chemotaxis of E.Coli
 %  | Version  | Contribution | Time    | Comment
 %  |   1.0     | Xinyu Zhou | 2017.6.8 | Initial verison from Xinyu Zhou
-%  |   1.1     | H.F.       | 2017.6.9 | Update
+%  |   1.1     | H.F.       | 2017.6.10| Update
 % Team Nubmer: YunYang He, Xingyu Zhou, Yuejian Mo,YuHang Jia, XingYu Wang
 %--------------------------------------------------------------------------
-clear;
-n=10000;%指布朗运动的点数
-s=0.0002;%指温度或速率
+clear all;
+n=200;% Number of bacteria
+s=2;% Speed. Unit: 2 mum in 0.1s
 k=0.02;%gradient
-%产生n个随机点(x,y)，处于-0.5~0.5之间
-x=5*(rand(n,1)-0.5);
-y=5*(rand(n,1)-0.5);
-x=zeros(n,1);
-y=zeros(n,1);
-d=rand(n,5000);
-disX=rand(n,5000);
-disY=rand(n,5000);
-h=plot(x,y,'.');
-axis([-0.08 0.08 -0.08 0.08]);
-% axis square
-grid on
-%循环5000次，产生动画效果
-j=1;
-k=2;
-x1=x;
-y1=y;
-for i=linspace(1,5000,5000)
-    figure(1)
-     x=x+s*(randn(n,1)+0.05*log(x+k));%driving force1
-      %x=x+s*(rand(n,1)+k);%driving frce2、
-     %x=x+s*(randn(n,1));%bulang
-     y=y+s*randn(n,1);
-     set(h,'XData',x,'YData',y,'MarkerSize',10);
-     d(:,j)=(x-x1).^2+(y-y1).^2;%距离的平方
-     disX(:,j)=x-x1;
-     disY(:,j)=y-y1;
-     j=j+1;
-     drawnow limitrate
+frame=1000; 
+frameseq=1:1:frame; % camera captuer 0.1s one frame in 100s.
+x=200*(rand(n,1)-0.5); y=200*(rand(n,1)-0.5); % Bacteria are random distrubtion
+distX=zeros(n,frame);   % distance to orign at X-axis
+distY=zeros(n,frame);   % distance to orign at Y-axis
+bacteria=plot(x,y,'.');
+axis([-500 500 -250 250]);% size of microfluicds channel. Unit: mu m
+grid on; % To do: size set
+
+x0=x; y0=y;
+for j=frameseq
+	figure(1);
+	%x=x+s*(randn(n,1)+0.05*log(x+k));%driving force
+        x=x+s*(randn(n,1));
+       	y=y+s*randn(n,1);
+
+        set(bacteria,'XData',x,'YData',y,'MarkerSize',2); 
+       	distX(:,j)=x-x0;
+	distX_2(:,j)=distX(:,j).^2;
+	distY(:,j)=y-y0;
+	distY_2(:,j)=distY(:,j).^2;
+    	drawnow limitrate;
+	xlabel('\mum');
+	ylabel('\mum');
 end
-figure(2)
-i=[1:1:5000];
-mean=sum(d(:,i))/n;
-meanX=sum(disX(:,i))/n;
-meanY=sum(disY(:,i))/n;
-% plot(i,[meanY(1,:)',meanY(1,:).^2'])
-% legend('距离','距离的平方');
-plot(i,[sqrt(mean)',meanX(1,:)',meanY(1,:)'])
-title('总体');
-legend('平均距离','X方向平均距离','Y方向平均距离');
-figure(3)
-plot(i,[mean.',meanX(1,:).^2',meanY(1,:).^2'])
-title('总体');
-legend('平均距离的平方','X方向平均距离的平方','Y方向平均距离的平方');
-figure(4)
-plot(i,[sqrt(d(1,:))',disX(1,:)',disY(1,:)'])
-title('单个细胞');
-legend('距离','X方向距离','Y方向距离');
-figure(5)
-plot(i,[d(1,:)',disX(1,:).^2',disY(1,:).^2'])
-title('单个细胞');
-legend('距离的平方','X方向距离的平方','Y方向距离的平方');
 
-% plot(i,[mean',sqrt(mean)',meanX(1,:)',meanX(1,:).^2',meanY(1,:)',meanY(1,:).^2'])
-% title('总体');
-% legend('平均距离','平均距离的平方','X方向平均距离','X方向平均距离的平方','Y方向平均距离','Y方向平均距离的平方');
-% figure(3)
-% plot(i,[sqrt(d(1,:))',d(1,:)',disX(1,:)',disX(1,:).^2',disY(1,:)',disY(1,:).^2'])
-% title('单个细胞');
-% legend('距离','距离的平方','X方向距离','X方向距离的平方','Y方向距离','Y方向距离的平方');
+meanX=sum(distX(:,1:frame))/n;
+meanX_2=sum(distX_2(:,1:frame))/n;
+meanY=sum(distY(:,1:frame))/n;
+meanY_2=sum(distY_2(:,1:frame))/n;
+dist_2_sum=meanX_2+meanY_2;
 
+figure(2);
+subplot(2,2,1);% 
+%plot(frameseq*0.1,[sqrt(dist_2_sum)',meanX(1,:)',meanY(1,:)'])
+title('Population');
+plot(frameseq*0.1,[meanX(1,:)',meanY(1,:)'])
+title('Population');
+legend('X-Mean of Distance','Y-Mean of Distance');
+xlabel('Time(s)');
+ylabel('\mum');
+ylim([-250,250]);
 
+subplot(2,2,2);
+plot(frameseq*0.1,[meanX_2(1,:)',meanY_2(1,:)'])
+title('Population');
+legend('X-Mean of Distance Square','Y-Mean of Distance Square');
+xlabel('Time(s)');
+ylabel('\mum^2');
 
+subplot(2,2,3);
+plot(frameseq*0.1,[distX(1,:)',distY(1,:)'])
+title('Single Bacteria');
+legend('X-Mean of Distance','Y-Mean of Distance');
+xlabel('Time(s)');
+ylabel('\mum');
+ylim([-250,250]);
 
-
-
-
-
-
-
-
-
+subplot(2,2,4)
+plot(frameseq*0.1,[distX_2(1,:)',distY_2(1,:)'])
+title('Single Bacteria');
+legend('X-Distance Square','Y-Distance Square');
+xlabel('Time(s)');
+ylabel('\mum^2');
 
