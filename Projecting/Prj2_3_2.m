@@ -48,7 +48,7 @@ for j=1:1:997
 	cYY(j)=cYY(j)/counter(j);
 	else
 		if (counter(j)==0)
-			counter(j)=1;
+		counter(j)=1;
 		end
 		cX(j)=cX(j)/counter(j)+X(j-1);
 		cXX(j)=cXX(j)/counter(j)+cXX(j-1); 
