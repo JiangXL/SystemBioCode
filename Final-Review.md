@@ -31,4 +31,6 @@ Now, the lastest research suggests that Turign-type mechanisms may be responsibl
 2. https://www.quantamagazine.org/biologists-home-in-on-turing-patterns-20130325
 3. 生命的另一个奥秘──浅谈生物数学与斑图生成,史峻平,《数学文化》
 
-
+Reading List:
+1.http://guava.physics.uiuc.edu/~nigel/courses/563/Essays_2005/PDF/Mukherjee.pdf
+2.https://biologydirect.biomedcentral.com/articles/10.1186/s13062-016-0124-7
