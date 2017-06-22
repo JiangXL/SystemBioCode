@@ -7,3 +7,15 @@
 >Life is the most fascinating state of matter. The research in our lab lies at the interface of physics and biology: we seek to understand how living things function, adapt and evolve. We choose to study bacteria because they are simple and easy to manipulate. Our research is focused on the physics of bacterial behavior at all length scales, from single cells to bacterial communities. We are particularly interested in fundamental aspects of multicellular behavior, such as cell motility, intercellular communications, and population dynamics. Our research is mainly driven by experiments, with the aid of modeling and computer simulations. We fuse experimental techniques from biophotonics, materials engineering and molecular biology to address different questions.
 # ![SoftSimu Lab](http://www.softsimu.net/)
 > Our research is geared towards the interface between condensed matter physics, biology and biomedical sciences. Typically, we employ large scale computer simulations combined with analytical studies. Most of our projects are done in collaboration with experimental groups.
+
+#![ Dufour Lab](http://dufour.mmg.msu.edu/index.html)
+> Bacteria have sophisticated individual and social behavior. They are able to move toward favorable environments and communicate with each other to establish organized communities.
+
+We are interested in understanding the elemental rules and molecular mechanisms that enable bacteria to interpret and navigate complex environments. We are currently focusing our efforts on characterizing bacterial behavior when interacting with the human host in health and disease.
+
+We use microfluidics to mimic and manipulate the environmental conditions bacteria find within the host. We use video microscopy to analyze individual cell behavior and performance in structured microenvironments.
+
+Our goal is to understand:
+(1) how bacteria colonize complex environments such as the human host,
+(2) how pathogenic bacteria penetrate the host physical defenses,
+(3) identify strategies to prevent bacterial infections.
