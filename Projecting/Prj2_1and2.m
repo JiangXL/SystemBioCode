@@ -5,6 +5,8 @@
 %  |   1.1     | H.F.       | 2017.6.10| Recorret square mean, add unit
 %  |   2.0     | H.F.       | 2017.6.11| Use exponential distribution
 %  |   2.1     | H.F.       | 2017.6.11| 
+%  |   2.2     | H.F.       |2018.5.22| I want to follow the center limit theory
+%                           | to find the normal distribution
 % Team Nubmer: YunYang He, Xingyu Zhou, Yuejian Mo,YuHang Jia, XingYu Wang
 %--------------------------------------------------------------------------
 clear all;
