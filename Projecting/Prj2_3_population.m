@@ -1,11 +1,16 @@
-load channel_1.mat 
+%------------------------------------
+% Statics the bacteria beharie
+%
+%-----------------------------------
+load channel_1.mat
 
-X=zeros(997,3183)+999999; Y=zeros(997,3183)+999999;
+trknb=length(tracks); % track number
+X=zeros(997,trknb)+999999; Y=zeros(997,trknb)+999999;
 cX=zeros(997,1); cY=zeros(997,1);
 cXX=zeros(997,1); cYY=zeros(997,1);
 %Calculate the distance
 %figure(5);
-for i=1:1:3183
+for i=1:1:trknb
 	time_0=tracks(i).seqOfEvents(1,1);
 	time_t=tracks(i).seqOfEvents(2,1);
 	tracksnumber=size(tracks(i).seqOfEvents);
@@ -22,20 +27,16 @@ for i=1:1:3183
 end
 
 %Statical
-counter=zeros(997,1);
+counter=zeros(997,1)+trknb;
 for j=1:1:997
-	for i=1:1:3183
-		if(X(j,i)==999999||isnan(X(j,i)))
-		counter(j)=counter(j)+1;
+	for i=1:1:trknb
+		if(X(j,i)==999999||isnan(X(j,i))||Y(j,i)==999999)
 		X(j,i)=0;
+		Y(j,i)=0;
+		counter(j)=counter(j)-1;
 		else
 		cX(j)=cX(j)+X(j,i);
 		cXX(j)=X(j,i)*X(j,i)+cXX(j);
-		end
-
-		if(Y(j,i)==999999||isnan(Y(j,i)))
-		Y(j,i)=0;
-		else
 		cY(j)=cY(j)+Y(j,i);
 		cYY(j)=Y(j,i)*Y(j,i)+cYY(j);
 		end
@@ -46,11 +47,13 @@ for j=1:1:997
 	cXX(j)=cXX(j)/counter(j);
 	cYY(j)=cYY(j)/counter(j);
 	else
-	cX(j)=cX(j)/counter(j)+X(j-1);
-	cXX(j)=cXX(j)/counter(j)+cXX(j-1);
-	cY(j)=cY(j)/counter(j)+cY(j-1);
-	cYY(j)=cYY(j)/counter(j)+cYY(j-1);
-
+		if (counter(j)==0)
+		counter(j)=1;
+		end
+		cX(j)=cX(j)/counter(j)+X(j-1);
+		cXX(j)=cXX(j)/counter(j)+cXX(j-1);
+		cY(j)=cY(j)/counter(j)+cY(j-1);
+		cYY(j)=cYY(j)/counter(j)+cYY(j-1);
 	end
 end
 
