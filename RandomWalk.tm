@@ -1,9 +1,9 @@
-<TeXmacs|1.99.7>
+<TeXmacs|1.99.12>
 
-<style|generic>
+<style|<tuple|generic|old-dots>>
 
 <\body>
-  <doc-data|<doc-title|Random Walk>|<doc-author|<author-data|<author-name|Yuejian
+  <doc-data|<doc-title|Note For Random Walk>|<doc-author|<author-data|<author-name|Yuejian
   Mo>|<\author-affiliation>
     <date|>
   </author-affiliation>>>>
@@ -35,10 +35,10 @@
 
   \;
 
-  To descript the spread of <math|N> particles, variance is\ 
+  To descript the spread of <math|N> particles, variance is <htab|5mm>
 
   <\equation*>
-    Var<around*|(|x<around*|(|n|)>|)>=\<less\>x<rsup|2><around*|(|n|)>\<gtr\>-\<less\>x<around*|(|n|)>\<gtr\><rsup|2>=\<less\>x<rsup|2><around*|(|n|)>\<gtr\>=<frac|1|N><big|sum><rsub|i=1><rsup|N>x<rsub|i><rsup|2><around*|(|n|)>=<frac|1|N><big|sum><rsub|i=1><rsup|N><around*|(|x<rsub|i><around*|(|n-1|)>\<pm\>\<Delta\>x|)><rsup|2>
+    Var<around*|(|x<around*|(|n|)>|)>=\<less\>x<rsup|2><around*|(|n|)>\<gtr\>-\<less\>x<around*|(|n|)>\<gtr\><rsup|2>=\<less\>x<rsup|2><around*|(|n|)>\<gtr\>=<frac|1|N><big|sum><rsub|i=1><rsup|N>x<rsub|i><rsup|2><around*|(|n|)>=<frac|1|N><big|sum><rsub|i=1><rsup|N><around*|(|x<rsub|i><around*|(|n-1|)>\<pm\>\<Delta\>x<rsub|i>|)><rsup|2>
   </equation*>
 
   But here, textbook don't continue expand <math|x<rsub|i><around*|(|n-1|)>>
@@ -72,8 +72,8 @@
     <frac|\<partial\>|\<partial\>t>f<around*|(|x,t|)>=-<frac|\<partial\>|\<partial\>x><around*|[|D<rsub|1><around*|(|x,t|)>f<around*|(|x,t|)>|]>+<frac|\<partial\><rsup|2>|\<partial\>x<rsup|2>><around*|[|D<rsub|2><around*|(|x,t|)>f<around*|(|x,t|)>|]>
   </equation*>
 
-  where <math|D<rsub|1><around*|(|x,t|)>> is drag force parameter,
-  <math|D<rsub|2><around*|(|x,t|)>> is diffusion parameter.
+  where <math|D<rsub|1><around*|(|x,t|)>> is the drag force parameter,
+  <math|D<rsub|2><around*|(|x,t|)>> is the diffusion parameter.
 
   <section|Reference>
 
@@ -90,3 +90,21 @@
     <associate|auto-3|<tuple|3|?>>
   </collection>
 </references>
+
+<\auxiliary>
+  <\collection>
+    <\associate|toc>
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|1<space|2spc>Random
+      Walk in 1-D> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-1><vspace|0.5fn>
+
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|2<space|2spc>Random
+      Walk under external force> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-2><vspace|0.5fn>
+
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|3<space|2spc>Reference>
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-3><vspace|0.5fn>
+    </associate>
+  </collection>
+</auxiliary>

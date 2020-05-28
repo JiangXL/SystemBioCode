@@ -3,7 +3,8 @@
 % 20170609,H.F.
 %-------------------------------------------
 clear all;
-load channel_1.mat 
+%load channel_1.mat 
+load Channel_1_tracking_result.mat 
 X=tracks(33).tracksCoordAmpCG(1,1:8:end);
 Y=tracks(33).tracksCoordAmpCG(1,2:8:end);
 X(isnan(X))=[];
@@ -11,7 +12,7 @@ ylabel('Counter');
 Y(isnan(Y))=[];% delete NaN
 
 Y_end=[Y ,0];
-Y_start=[0, Y];%take out NaN term
+Y_start=[0, Y];% remove NaN item
 trackY0=Y_end-Y_start;
 trackY1=trackY0(2:end-1);
 X_end=[X ,0];
